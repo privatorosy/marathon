@@ -6,6 +6,7 @@
 /var/
 /vendor/
 /vendor-bin/
+config/reference.php
 ###< symfony/framework-bundle ###
 
 ###> mediashare/marathon ###
