@@ -59,7 +59,8 @@ class TaskService {
             return $this->task;
         endif;
 
-        $taskFileExist = $this->filesystem->exists($filepath = $this->getTaskFilepath());
+        $filepath = $this->getTaskFilepath();
+        $taskFileExist = $this->filesystem->exists($filepath);
         if ($taskFileExist):
             return $this
                 ->setTask($this->serializerService->read($filepath, Task::class))
@@ -165,15 +166,25 @@ class TaskService {
     }
 
     public function delete(): self {
-        $this->filesystem
-            ->remove($this->getTaskFilepath())
-        ;
+        $this->filesystem->remove($this->getTaskFilepath());
 
         return $this->setTask(null);
     }
 
     public function getTaskFilepath(): string {
-        return $this->getConfig()->getTaskDirectory().DIRECTORY_SEPARATOR.$this->getConfig()->getTaskId().'.json';
+        return $this->getConfig()->getTaskDirectory().DIRECTORY_SEPARATOR.$this->sanitizeTaskIdForFilename().'.json';
+    }
+
+    private function sanitizeTaskIdForFilename(): string {
+        $taskId = $this->getConfig()->getTaskId() ?? '';
+
+        $sanitizedTaskId = preg_replace('/[<>:"\/\\|?*\x00-\x1F]+/u', '-', $taskId);
+        $sanitizedTaskId = preg_replace('/[^\w.-]+/u', '-', $sanitizedTaskId ?? '');
+        $sanitizedTaskId = trim($sanitizedTaskId, " .-\t\n\r\0\x0B");
+
+        return $sanitizedTaskId !== '' && $sanitizedTaskId !== '.' && $sanitizedTaskId !== '..'
+            ? $sanitizedTaskId
+            : 'task';
     }
 
     /**
