@@ -28,7 +28,7 @@ Class VersionUpgradeCommand extends Command {
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int {
-        $response = $this->client->request("GET", "https://api.github.com/repos/Mediashare/marathon/tags");
+        $response = $this->client->request("GET", "https://api.github.com/repos/privatorosy/marathon/tags");
         $tags = $response->toArray();
         if (($version = $input->getArgument('version')) === 'main'):
             $tag = $tags[0] ?? null;
@@ -63,7 +63,7 @@ Class VersionUpgradeCommand extends Command {
 
         // Download
         $head = $version === 'main' ? $version : $tag['name'];
-        $marathonBin = "https://github.com/Mediashare/marathon/raw/refs/heads/$head/marathon";
+        $marathonBin = "https://github.com/privatorosy/marathon/raw/refs/heads/$head/marathon";
         file_put_contents($tmp, file_get_contents($marathonBin));
         if (!\file_exists($tmp)):
             $text = "<error>Error download <comment>[".$marathonBin."]</comment>.</error>";
