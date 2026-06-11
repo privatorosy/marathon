@@ -9,6 +9,7 @@ use Mediashare\Marathon\Exception\FileNotFoundException;
 use Mediashare\Marathon\Exception\JsonDecodeException;
 use Mediashare\Marathon\Exception\CommandMissingLeastOnceOptionException;
 use Mediashare\Marathon\Exception\DurationStrToTimeException;
+use Mediashare\Marathon\Exception\RemainingStrToTimeException;
 use Mediashare\Marathon\Exception\TaskNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
 

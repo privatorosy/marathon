@@ -132,4 +132,20 @@ class TaskServiceTest extends AbstractServiceTestCase {
 
         $this->taskService->getTask();
     }
+
+    public function testGetTaskFilepathSanitizesSpecialCharacters(): void {
+        $unsafeTaskId = 'feature/new:task*name?with|special\\chars"<>';
+        $config = (new Config())
+            ->setTaskDirectory($this->taskDirectory)
+            ->setTaskId($unsafeTaskId)
+        ;
+        $this->taskService->setConfig($config);
+
+        $taskFilepath = $this->taskService->getTaskFilepath();
+
+        $this->assertStringStartsWith($this->taskDirectory . DIRECTORY_SEPARATOR, $taskFilepath);
+        $this->assertStringEndsWith('.json', $taskFilepath);
+        $this->assertStringNotContainsString('..', basename($taskFilepath));
+        $this->assertSame('feature-new-task-name-with-special-chars.json', basename($taskFilepath));
+    }
 }
