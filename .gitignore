@@ -25,3 +25,7 @@ marathon.json
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> composer/composer ###
+/composer.phar
+###< composer/composer ###
