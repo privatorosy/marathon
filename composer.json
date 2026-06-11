@@ -60,7 +60,7 @@
             "*": "dist"
         },
         "sort-packages": true,
-        "bin-dir": "../../bin",
+        "bin-dir": "vendor/bin",
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true,
             "symfony/flex": true,
