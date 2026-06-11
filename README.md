@@ -1,6 +1,6 @@
 # Marathon
-[![Marathon GitHub Release](https://img.shields.io/github/v/release/Mediashare/marathon.svg?style=flat)]()
-[![Marathon GitHub pull requests](https://img.shields.io/github/issues-pr/Mediashare/marathon.svg?style=flat)]()
+[![Marathon GitHub Release](https://img.shields.io/github/v/release/privatorosy/marathon.svg?style=flat)]()
+[![Marathon GitHub pull requests](https://img.shields.io/github/issues-pr/privatorosy/marathon.svg?style=flat)]()
 
 ## Introduction
 Marathon is a command-line tool written in PHP and Symfony that empowers you to efficiently **manage todo-list for your projects**. 
@@ -14,7 +14,7 @@ It provides a comprehensive solution for maintaining a project-related activitie
 ## Installation
 ### Binary
 ```bash
-curl --output marathon https://raw.githubusercontent.com/Mediashare/marathon/main/marathon
+curl --output marathon https://raw.githubusercontent.com/privatorosy/marathon/main/marathon
 chmod 755 marathon
 sudo cp marathon /usr/local/bin/marathon
 marathon <command>
@@ -22,7 +22,7 @@ marathon <command>
 ### Docker
 #### Dockerfile
 ```bash
-git clone https://github.com/Mediashare/marathon
+git clone https://github.com/privatorosy/marathon
 cd marathon
 docker build -t marathon .
 docker run -it marathon <command>
@@ -30,12 +30,12 @@ docker run -it marathon <command>
 ### Composer
 #### Basic
 ```bash
-composer require mediashare/marathon
-./vendor/mediashare/marathon/bin/marathon <command>
+composer require privatorosy/marathon
+./vendor/privatorosy/marathon/bin/marathon <command>
 ```
 #### Global
 ```bash
-composer global require mediashare/marathon
+composer global require privatorosy/marathon
 marathon <command>
 ```
 ## Usage
