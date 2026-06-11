@@ -11,7 +11,10 @@
     "files": [
         "composer.json",
         ".env",
-        "config/bundles.php"
+        "config/bundles.php",
+        "config/services.yaml",
+        "config/packages/cache.yaml",
+        "config/packages/framework.yaml"
     ],
     "finder": [
         {
