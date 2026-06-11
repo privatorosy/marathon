@@ -41,6 +41,6 @@ services:
     Mediashare\Marathon\Console\CommandProvider:
         arguments:
             $serviceLocator: !service_locator
-                handleService: '@Mediashare\Marathon\Service\HandlerService'
+                handlerService: '@Mediashare\Marathon\Service\HandlerService'
                 outputService: '@Mediashare\Marathon\Service\OutputService'
         tags: ['console.command_loader']
