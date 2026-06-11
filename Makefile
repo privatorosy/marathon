@@ -1,3 +1,13 @@
+DEFAULT_GOAL := help
+
+.PHONY: help install install-opti cache-clear cache clear cache-warmup warmup test tests phpunit compile build build-prod build-without-tests build-without-test compile-without-tests compile-without-test
+
+help: ## Display available commands
+	@echo "Marathon - Available commands"
+	@awk 'BEGIN {FS = ":.*##"} \
+		/^##[^#]/ {gsub(/^##[[:space:]]*/, "", $$0); if (length($$0) > 0) printf "\n%s\n", $$0} \
+		/^[a-zA-Z0-9_.-]+:.*##/ {printf "  %-28s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
 ##
 ##Install
 ##
@@ -27,9 +37,7 @@ warmup: cache-warmup
 test: install ## Run PHPUnit tests
 	chmod +x bin/phpunit
 	php bin/phpunit
-.PHONY: test
 tests: test ## Run PHPUnit tests
-.PHONY: test
 phpunit: test ## Run PHPUnit tests
 
 ##
